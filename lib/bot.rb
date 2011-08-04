@@ -7,6 +7,16 @@ class Bot
   attr_writer :succussful
   BOTLIGA_API_TOKEN = File.open(File.expand_path('~/.botliga_api_key_1')) { |file| file.readline }
   
+  def post_guesses_for_match_day match_day
+    match_guesser = MatchGuesser.new
+    matches = match_guesser.get_matches_for_match_day match_day
+    matches.each do |match|
+      guess = match_guesser.guess match
+      pp "#{guess} - #{match.team1.name} vs. #{match.team2.name}"
+      post_guess match.id, guess
+    end
+  end  
+  
   def post_guess match_id, result
 
       params = [Curl::PostField.content('match_id', match_id),
@@ -19,12 +29,6 @@ class Bot
   
   def tip_successful_submitted?
     @succussful
-  end
-  
-  def post_guesses_for_season_2010_2011
-    (9998..10303).each do |match_id|
-      post_guess match_id, MatchGuesser.guess
-    end
   end
   
 end

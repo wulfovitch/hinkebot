@@ -39,6 +39,15 @@ describe Team do
     end  
   end
   
+  describe "#find_by_id" do
+    it "should find a team" do
+      bvb = Team.find_by_id 100
+      bvb.name == "Hamburger SV"
+      svw = Team.find_by_id 134
+      svw.name == "Werder Bremen"
+    end  
+  end  
+  
   describe "#aufsteiger?" do
     it "should return FC Augsburg and Hertha BSC Berlin as aufsteiger teams" do
       fca = Team.find_by_shortname Team::FCA

@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'json'
+require 'pp'
 require 'bot'
 require 'team'
+require 'match'
 require 'match_guesser'
