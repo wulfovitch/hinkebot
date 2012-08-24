@@ -2,13 +2,13 @@ class MatchGuesser
   
   def guess match
     return "2:1" if match.team1.aufsteiger? || match.team2.aufsteiger?
-    last_saison_results = get_results_from_saison_2010 match.team1, match.team2
+    last_saison_results = get_results_for_saison_and_teams "2011", match.team1, match.team2
     return "2:1" unless results_from_last_saison_valid? last_saison_results
     calculate_result_from_last_saison_result last_saison_results
   end
   
   def get_matches_for_match_day match_day
-    json = Curl::Easy.perform("http://botliga.de/api/matches/2011").body_str
+    json = Curl::Easy.perform("http://botliga.de/api/matches/2012").body_str
     all_matches = JSON.parse(json)
     
     matches = []
@@ -22,13 +22,16 @@ class MatchGuesser
   
   private
   
-  def get_results_from_saison_2010 team1, team2
-    json = Curl::Easy.perform("http://openligadb-json.heroku.com/api/matchdata_by_teams?team_id_1=#{team1.id}&team_id_2=#{team2.id}").body_str
+  def get_results_for_saison_and_teams saison, team1, team2
+    query_url = "http://openligadb-json.heroku.com/api/matchdata_by_teams?team_id_1=#{team1.id}&team_id_2=#{team2.id}"
+    puts query_url
+    json = Curl::Easy.perform(query_url).body_str
+    pp json
     matchdata = JSON.parse(json)
 
     results = []
     matchdata["matchdata"].each do |match|
-      if match["league_saison"] == "2010" && match["league_shortcut"] == "bl1"
+      if match["league_saison"] == saison && match["league_shortcut"] == "bl1"
         match["match_results"]["match_result"].each do |match_results|
           if match_results["result_name"] == "Endergebnis"
             if match["id_team1"] == team1.id.to_s

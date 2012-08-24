@@ -10,15 +10,15 @@ describe Team do
   
     it "should return all 18 Team longnames" do
       Team.all_team_names.should include "FC Augsburg"
-      Team.all_team_names.should include "Hertha BSC Berlin"
+      Team.all_team_names.should include "Fortuna Düsseldorf"
       Team.all_team_names.should include "SV Werder Bremen"
       Team.all_team_names.should include "Borussia Dortmund"
       Team.all_team_names.should include "SC Freiburg"
       Team.all_team_names.should include "Hamburger SV"
       Team.all_team_names.should include "Hannover 96"
       Team.all_team_names.should include "TSG 1899 Hoffenheim"
-      Team.all_team_names.should include "1. FC Kaiserslautern"
-      Team.all_team_names.should include "1. FC Köln"
+      Team.all_team_names.should include "Eintracht Frankfurt"
+      Team.all_team_names.should include "SpVgg Greuther Fürth"
       Team.all_team_names.should include "Bayer 04 Leverkusen"
       Team.all_team_names.should include "1. FSV Mainz 05"
       Team.all_team_names.should include "Borussia Mönchengladbach"
@@ -49,12 +49,15 @@ describe Team do
   end  
   
   describe "#aufsteiger?" do
-    it "should return FC Augsburg and Hertha BSC Berlin as aufsteiger teams" do
-      fca = Team.find_by_shortname Team::FCA
-      fca.aufsteiger?.should be_true
+    it "should return SpVgg Greuther Fürth, Eintracht Frankfurt and Fortuna Düsseldorf as aufsteiger teams" do
+      fd = Team.find_by_shortname Team::FD
+      fd.aufsteiger?.should be_true
     
-      bsc = Team.find_by_shortname Team::BSC
-      bsc.aufsteiger?.should be_true
+      ef = Team.find_by_shortname Team::EF
+      ef.aufsteiger?.should be_true
+      
+      gf = Team.find_by_shortname Team::GF
+      gf.aufsteiger?.should be_true      
     end      
     
     it "should return Bayern München not as a aufsteiger team" do
@@ -81,21 +84,23 @@ describe Team do
       bvb.last_season_position.should == 1
     end
     
-    it "Bayern München should return '3' as position of the last season" do
+    it "Bayern München should return '2' as position of the last season" do
       fcb = Team.find_by_shortname Team::FCB
-      fcb.last_season_position.should == 3
+      fcb.last_season_position.should == 2
     end
     
-    it "Werder Bremen should return '13' as position of the last season" do
+    it "Werder Bremen should return '9' as position of the last season" do
       svw = Team.find_by_shortname Team::SVW
-      svw.last_season_position.should == 13  
+      svw.last_season_position.should == 9  
     end
     
-    it "FC Augsburg and Hertha BSC Berlin should return nil as position of the last season" do
-      bsc = Team.find_by_shortname Team::BSC
-      bsc.last_season_position.should be_nil
-      fca = Team.find_by_shortname Team::FCA
-      fca.last_season_position.should be_nil      
+    it "SpVgg Greuther Fürth, Eintracht Frankfurt and Fortuna Düsseldorf should return nil as position of the last season" do
+      fd = Team.find_by_shortname Team::FD
+      fd.last_season_position.should be_nil
+      ef = Team.find_by_shortname Team::EF
+      ef.last_season_position.should be_nil      
+      gf = Team.find_by_shortname Team::GF
+      gf.last_season_position.should be_nil      
     end        
   end
   
