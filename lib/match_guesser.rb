@@ -1,6 +1,9 @@
 class MatchGuesser
   
   def guess match
+    # the openliga db does not get the historic data between hsv and fcb, therefore this little hack
+    return "2:1" if (match.team1.shortname == Team::HSV && match.team2.shortname == Team::FCB) || (match.team1.shortname == Team::FCB && match.team2.shortname == Team::HSV)
+    
     return "2:1" if match.team1.aufsteiger? || match.team2.aufsteiger?
     last_saison_results = get_results_for_saison_and_teams "2011", match.team1, match.team2
     return "2:1" unless results_from_last_saison_valid? last_saison_results
@@ -24,9 +27,7 @@ class MatchGuesser
   
   def get_results_for_saison_and_teams saison, team1, team2
     query_url = "http://openligadb-json.heroku.com/api/matchdata_by_teams?team_id_1=#{team1.id}&team_id_2=#{team2.id}"
-    puts query_url
     json = Curl::Easy.perform(query_url).body_str
-    pp json
     matchdata = JSON.parse(json)
 
     results = []

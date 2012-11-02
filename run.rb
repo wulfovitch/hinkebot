@@ -8,4 +8,3 @@ require 'hinkebot'
 #end
 
 Bot.new.post_guesses_for_match_day 1
-
