@@ -2,16 +2,15 @@ class MatchGuesser
   
   def guess match
     # the openliga db does not get the historic data between hsv and fcb, therefore this little hack
-    return "2:1" if (match.team1.shortname == Team::HSV && match.team2.shortname == Team::FCB) || (match.team1.shortname == Team::FCB && match.team2.shortname == Team::HSV)
-    
+    # return "2:1" if (match.team1.shortname == Team::HSV && match.team2.shortname == Team::FCB) || (match.team1.shortname == Team::FCB && match.team2.shortname == Team::HSV)
     return "2:1" if match.team1.aufsteiger? || match.team2.aufsteiger?
-    last_saison_results = get_results_for_saison_and_teams "2011", match.team1, match.team2
+    last_saison_results = get_results_for_saison_and_teams "2012", match.team1, match.team2
     return "2:1" unless results_from_last_saison_valid? last_saison_results
     calculate_result_from_last_saison_result last_saison_results
   end
   
   def get_matches_for_match_day match_day
-    json = Curl::Easy.perform("http://botliga.de/api/matches/2012").body_str
+    json = Curl::Easy.perform("http://botliga.de/api/matches/2013").body_str
     all_matches = JSON.parse(json)
     
     matches = []

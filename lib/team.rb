@@ -1,14 +1,14 @@
 class Team
   
   FCA = 'fca'
-  FD = 'fd'
+  BSC = 'bsc'
   SVW = 'svw'
   BVB = 'bvb'
   SCF = 'scf'
   HSV = 'hsv'
   H96 = 'h96'
   TSG = 'tsg'
-  GF = 'gf'
+  EB = 'eb'
   EF = 'ef'
   B04 = 'b04'
   FSV = 'fsv'
@@ -36,24 +36,24 @@ class Team
   
   def self.all
     return @@all_teams unless @@all_teams.empty?
-    @@all_teams << Team.new(:name => "FC Augsburg", :shortname => FCA, :aufsteiger => false, :meister => false, :last_season_position => 14, :id => 95)
-    @@all_teams << Team.new(:name => "Fortuna Düsseldorf", :shortname => FD, :aufsteiger => true, :meister => false, :last_season_position => nil, :id => 185)
-    @@all_teams << Team.new(:name => "SV Werder Bremen", :shortname => SVW, :aufsteiger => false, :meister => false, :last_season_position => 9, :id => 134)
-    @@all_teams << Team.new(:name => "Borussia Dortmund", :shortname => BVB, :aufsteiger => false, :meister => true, :last_season_position => 1, :id => 7)
-    @@all_teams << Team.new(:name => "SC Freiburg", :shortname => SCF, :aufsteiger => false, :meister => false, :last_season_position => 12, :id => 112)
-    @@all_teams << Team.new(:name => "Hamburger SV", :shortname => HSV, :aufsteiger => false, :meister => false, :last_season_position => 15, :id => 100)
-    @@all_teams << Team.new(:name => "Hannover 96", :shortname => H96, :aufsteiger => false, :meister => false, :last_season_position => 7, :id => 55)
-    @@all_teams << Team.new(:name => "TSG 1899 Hoffenheim", :shortname => TSG, :aufsteiger => false, :meister => false, :last_season_position => 11, :id => 123)
-    @@all_teams << Team.new(:name => "SpVgg Greuther Fürth", :shortname => GF, :aufsteiger => true, :meister => false, :last_season_position => nil, :id => 115)
-    @@all_teams << Team.new(:name => "Eintracht Frankfurt", :shortname => EF, :aufsteiger => true, :meister => false, :last_season_position => nil, :id => 91)
-    @@all_teams << Team.new(:name => "Bayer 04 Leverkusen", :shortname => B04, :aufsteiger => false, :meister => false, :last_season_position => 5, :id => 6)
+    @@all_teams << Team.new(:name => "FC Augsburg", :shortname => FCA, :aufsteiger => false, :meister => false, :last_season_position => 15, :id => 95)
+    @@all_teams << Team.new(:name => "Hertha BSC", :shortname => BSC, :aufsteiger => true, :meister => false, :last_season_position => nil, :id => 54)
+    @@all_teams << Team.new(:name => "SV Werder Bremen", :shortname => SVW, :aufsteiger => false, :meister => false, :last_season_position => 14, :id => 134)
+    @@all_teams << Team.new(:name => "Borussia Dortmund", :shortname => BVB, :aufsteiger => false, :meister => false, :last_season_position => 2, :id => 7)
+    @@all_teams << Team.new(:name => "SC Freiburg", :shortname => SCF, :aufsteiger => false, :meister => false, :last_season_position => 5, :id => 112)
+    @@all_teams << Team.new(:name => "Hamburger SV", :shortname => HSV, :aufsteiger => false, :meister => false, :last_season_position => 7, :id => 100)
+    @@all_teams << Team.new(:name => "Hannover 96", :shortname => H96, :aufsteiger => false, :meister => false, :last_season_position => 9, :id => 55)
+    @@all_teams << Team.new(:name => "TSG 1899 Hoffenheim", :shortname => TSG, :aufsteiger => false, :meister => false, :last_season_position => 16, :id => 123)
+    @@all_teams << Team.new(:name => "Eintracht Braunschweig", :shortname => EB, :aufsteiger => true, :meister => false, :last_season_position => nil, :id => 74)
+    @@all_teams << Team.new(:name => "Eintracht Frankfurt", :shortname => EF, :aufsteiger => false, :meister => false, :last_season_position => 6, :id => 91)
+    @@all_teams << Team.new(:name => "Bayer 04 Leverkusen", :shortname => B04, :aufsteiger => false, :meister => false, :last_season_position => 3, :id => 6)
     @@all_teams << Team.new(:name => "1. FSV Mainz 05", :shortname => FSV, :aufsteiger => false, :meister => false, :last_season_position => 13, :id => 81)
-    @@all_teams << Team.new(:name => "Borussia Mönchengladbach", :shortname => BMG, :aufsteiger => false, :meister => false, :last_season_position => 4, :id => 87)
-    @@all_teams << Team.new(:name => "FC Bayern München", :shortname => FCB, :aufsteiger => false, :meister => false, :last_season_position => 2, :id => 40)
+    @@all_teams << Team.new(:name => "Borussia Mönchengladbach", :shortname => BMG, :aufsteiger => false, :meister => false, :last_season_position => 8, :id => 87)
+    @@all_teams << Team.new(:name => "FC Bayern München", :shortname => FCB, :aufsteiger => false, :meister => true, :last_season_position => 1, :id => 40)
     @@all_teams << Team.new(:name => "1. FC Nürnberg", :shortname => FCN, :aufsteiger => false, :meister => false, :last_season_position => 10, :id => 79)
-    @@all_teams << Team.new(:name => "FC Schalke 04", :shortname => S04, :aufsteiger => false, :meister => false, :last_season_position => 3, :id => 9)
-    @@all_teams << Team.new(:name => "VfB Stuttgart", :shortname => VFB, :aufsteiger => false, :meister => false, :last_season_position => 6, :id => 16)
-    @@all_teams << Team.new(:name => "VfL Wolfsburg", :shortname => VFL, :aufsteiger => false, :meister => false, :last_season_position => 8, :id => 131)
+    @@all_teams << Team.new(:name => "FC Schalke 04", :shortname => S04, :aufsteiger => false, :meister => false, :last_season_position => 4, :id => 9)
+    @@all_teams << Team.new(:name => "VfB Stuttgart", :shortname => VFB, :aufsteiger => false, :meister => false, :last_season_position => 12, :id => 16)
+    @@all_teams << Team.new(:name => "VfL Wolfsburg", :shortname => VFL, :aufsteiger => false, :meister => false, :last_season_position => 11, :id => 131)
     @@all_teams
   end
   
